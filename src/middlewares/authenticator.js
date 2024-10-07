@@ -1,5 +1,5 @@
 import { verifyToken } from "../services/jwt-service.js";
-import User from "../models/user-model.js"
+import User from "../models/user-model.js";
 
 export default async (req, res, next) => {
   try {
@@ -8,6 +8,7 @@ export default async (req, res, next) => {
 
     if (user) {
       req.user = await User.findById(user._id).exec();
+      console.log(req.user)
       next();
     } else {
       throw new Error();
